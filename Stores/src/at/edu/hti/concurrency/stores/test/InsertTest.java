@@ -27,13 +27,13 @@ public class InsertTest implements StoreTest {
 			store.addFirst("data" + count);
 		}
 
-		for (int count = size; count > 0; count--) {
-			store.removeItem(count / 2);
-		}
+//		for (int count = size; count > 0; count--) {
+//			store.removeItem(count / 2);
+//		}
 
-		if (store.size() > 0) {
-			throw new RuntimeException("store not empty");
-		}
+//		if (store.size() > 0) {
+//			throw new RuntimeException("store not empty");
+//		}
 	
 		return System.currentTimeMillis() - start;
 

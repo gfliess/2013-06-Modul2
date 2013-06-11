@@ -25,12 +25,18 @@ public class VectorStore implements Store {
 
 	@Override
 	public String removeLast() {
-		return store.remove(store.size());
+		if (!store.isEmpty()) {
+			return store.remove(store.size()-1);
+		}
+		return null;
 	}
 
 	@Override
 	public String removeItem(int index) {
-		return store.remove(store.size());
+		if (!store.isEmpty()) {
+			return store.remove(index);
+		}
+		return null;
 	}
 
 	@Override
