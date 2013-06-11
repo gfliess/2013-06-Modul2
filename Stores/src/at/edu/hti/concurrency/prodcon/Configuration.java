@@ -35,4 +35,11 @@ public class Configuration {
 		return numberOfItems;
 	}
 
+	@Override
+	public String toString() {
+		return "Configuration [numberOfProcuders=" + numberOfProcuders
+				+ ", numberOfConsumers=" + numberOfConsumers + ", bufferSize="
+				+ bufferSize + ", numberOfItems=" + numberOfItems + "]";
+	}
+
 }
