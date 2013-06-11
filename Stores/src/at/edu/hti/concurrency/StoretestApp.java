@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import at.edu.hti.concurrency.stores.test.InsertTest;
 import at.edu.hti.concurrency.stores.test.RandomTest;
 import at.edu.hti.concurrency.stores.test.SequentiellTest;
 import at.edu.hti.concurrency.stores.test.StoreTest;
@@ -15,7 +16,7 @@ public class StoretestApp {
 	public static void main(String[] args) throws Exception {
 
 		StoreTest[] tests = new StoreTest[] { new ValidityTest(),
-				new SequentiellTest(), new RandomTest() };
+				new SequentiellTest(), new RandomTest(), new InsertTest() };
 		StringBuilder builder = new StringBuilder();
 		generateCSVHeader(tests, builder);
 
@@ -84,41 +85,5 @@ public class StoretestApp {
 		builder.append("\n");
 	}
 
-	private static long testSeq(Store store, int i) {
-		store.initMaxSize(i);
-		long start = System.currentTimeMillis();
-		for (int count = 0; count < i; count++) {
-			store.addFirst("data" + count);
-		}
 
-		for (int count = 0; count < i; count++) {
-			store.removeLast();
-		}
-
-		if (store.size() > 0) {
-			throw new RuntimeException("store not empty");
-		}
-
-		return System.currentTimeMillis() - start;
-
-	}
-
-	private static long testRna(Store store, int i) {
-		store.initMaxSize(i);
-		long start = System.currentTimeMillis();
-		for (int count = 0; count < i; count++) {
-			store.addFirst("data" + count);
-		}
-
-		for (int count = i; count > 0; count--) {
-			store.removeItem(count / 2);
-		}
-
-		if (store.size() > 0) {
-			throw new RuntimeException("store not empty");
-		}
-
-		return System.currentTimeMillis() - start;
-
-	}
 }
