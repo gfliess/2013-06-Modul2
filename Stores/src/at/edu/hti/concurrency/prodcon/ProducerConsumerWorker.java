@@ -3,6 +3,7 @@ package at.edu.hti.concurrency.prodcon;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 public class ProducerConsumerWorker implements ProducerConsumerStarter {
 
@@ -34,7 +35,6 @@ public class ProducerConsumerWorker implements ProducerConsumerStarter {
 
 	@Override
 	public long runProducerConsumerTest() {
-
 		for (Producer producer : producers) {
 			new Thread(producer).start();
 		}
@@ -58,7 +58,10 @@ public class ProducerConsumerWorker implements ProducerConsumerStarter {
 		public void run() {
 			while (true) {
 				try {
-					String element = queue.take();
+					String element = queue.poll(100, TimeUnit.MILLISECONDS);
+					if (element == null){
+						return;
+					}
 					System.out.println(this + "=" + element);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
