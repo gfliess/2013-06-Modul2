@@ -7,8 +7,6 @@ public class ThreadProducerConsumerStarter implements ProducerConsumerStarter {
 	Configuration config = null;
 	LinkedListStore store = null;
 	
-	final Object locker = new Object(); 
-
 	long numberObjectsProduced = 0;
 	long numberObjectsConsumed = 0;
 
@@ -55,15 +53,15 @@ public class ThreadProducerConsumerStarter implements ProducerConsumerStarter {
 		public void run() {
 			while (numberObjectsProduced < config.getNumberOfItems()) {
 
-				synchronized (locker) {
+				synchronized (store) {
 					if (store.size() < config.getBufferSize()) {
 						String produced = "String-" + numberObjectsProduced++;
 						System.out.println("Produced at "+Thread.currentThread().getName()+": " + produced);
 						store.addFirst(produced);
-						locker.notifyAll();
+						store.notifyAll();
 					} else {
 						try {
-							locker.wait();
+							store.wait();
 						} catch (InterruptedException e) {
 						}
 					}
@@ -80,15 +78,15 @@ public class ThreadProducerConsumerStarter implements ProducerConsumerStarter {
 		public void run() {
 
 			while (numberObjectsConsumed < config.getNumberOfItems()) {
-				synchronized (locker) {
+				synchronized (store) {
 					if (store.size() > 0) {
 						String consumed = store.removeLast();
 						numberObjectsConsumed++;
 						System.out.println("Consumed at "+Thread.currentThread().getName()+": " + consumed);
-						locker.notifyAll();
+						store.notifyAll();
 					} else {
 						try {
-							locker.wait();
+							store.wait();
 						} catch (InterruptedException e) {
 						}
 					}
