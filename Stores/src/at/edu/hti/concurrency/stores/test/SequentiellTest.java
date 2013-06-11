@@ -10,7 +10,7 @@ public class SequentiellTest implements StoreTest {
 	@Override
 	public List<Integer> getTestRanges() {
 
-		return Arrays.asList(new Integer[] { 100,10000});
+		return Arrays.asList(new Integer[] { 100,1000,10000,10000});
 	}
 
 	@Override
