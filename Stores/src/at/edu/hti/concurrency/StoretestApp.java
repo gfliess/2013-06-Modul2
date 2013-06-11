@@ -84,41 +84,5 @@ public class StoretestApp {
 		builder.append("\n");
 	}
 
-	private static long testSeq(Store store, int i) {
-		store.initMaxSize(i);
-		long start = System.currentTimeMillis();
-		for (int count = 0; count < i; count++) {
-			store.addFirst("data" + count);
-		}
 
-		for (int count = 0; count < i; count++) {
-			store.removeLast();
-		}
-
-		if (store.size() > 0) {
-			throw new RuntimeException("store not empty");
-		}
-
-		return System.currentTimeMillis() - start;
-
-	}
-
-	private static long testRna(Store store, int i) {
-		store.initMaxSize(i);
-		long start = System.currentTimeMillis();
-		for (int count = 0; count < i; count++) {
-			store.addFirst("data" + count);
-		}
-
-		for (int count = i; count > 0; count--) {
-			store.removeItem(count / 2);
-		}
-
-		if (store.size() > 0) {
-			throw new RuntimeException("store not empty");
-		}
-
-		return System.currentTimeMillis() - start;
-
-	}
 }
