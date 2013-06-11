@@ -39,7 +39,7 @@ public class ThreadProducerConsumerStarter implements ProducerConsumerStarter {
 			t.start();
 		}
 		
-		while (numberObjectsConsumed < numberObjectsProduced) {
+		while (numberObjectsConsumed < config.getNumberOfItems()) {
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
