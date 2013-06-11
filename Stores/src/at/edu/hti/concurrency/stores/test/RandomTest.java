@@ -10,7 +10,7 @@ public class RandomTest implements StoreTest {
 	@Override
 	public List<Integer> getTestRanges() {
 
-		return Arrays.asList(new Integer[] { 100,10000 });
+		return Arrays.asList(new Integer[] { 100, 1000, 10000, 20000 });
 	}
 
 	@Override
@@ -26,7 +26,15 @@ public class RandomTest implements StoreTest {
 		for (int count = 0; count < size; count++) {
 			store.addFirst("data" + count);
 		}
-	
+
+		for (int count = size; count > 0; count--) {
+			store.removeItem(count / 2);
+		}
+
+		if (store.size() > 0) {
+			throw new RuntimeException("store not empty");
+		}
+
 		return System.currentTimeMillis() - start;
 
 	}

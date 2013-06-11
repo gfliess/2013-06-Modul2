@@ -10,7 +10,7 @@ public class InsertTest implements StoreTest {
 	@Override
 	public List<Integer> getTestRanges() {
 
-		return Arrays.asList(new Integer[] { 100,1000,10000,100000,200000 });
+		return Arrays.asList(new Integer[] { 100,1000,10000,100000});
 	}
 
 	@Override
@@ -27,14 +27,6 @@ public class InsertTest implements StoreTest {
 			store.addFirst("data" + count);
 		}
 
-		for (int count = size; count > 0; count--) {
-			store.removeItem(count / 2);
-		}
-
-		if (store.size() > 0) {
-			throw new RuntimeException("store not empty");
-		}
-	
 		return System.currentTimeMillis() - start;
 
 	}
