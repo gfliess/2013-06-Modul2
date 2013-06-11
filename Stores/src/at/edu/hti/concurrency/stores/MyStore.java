@@ -6,7 +6,7 @@ import at.edu.hti.concurrency.Store;
 
 public class MyStore implements Store{
 
-	private final String name="MyStore";
+	private final String name="gdodig-jduchemin";
 	private LinkedList<String> items=new LinkedList<String>();
 	private int maxSize=0;
 	
