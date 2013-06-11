@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import at.edu.hti.concurrency.stores.test.InsertTest;
 import at.edu.hti.concurrency.stores.test.RandomTest;
 import at.edu.hti.concurrency.stores.test.SequentiellTest;
 import at.edu.hti.concurrency.stores.test.StoreTest;
@@ -15,7 +16,7 @@ public class StoretestApp {
 	public static void main(String[] args) throws Exception {
 
 		StoreTest[] tests = new StoreTest[] { new ValidityTest(),
-				new SequentiellTest(), new RandomTest() };
+				new SequentiellTest(), new RandomTest(), new InsertTest() };
 		StringBuilder builder = new StringBuilder();
 		generateCSVHeader(tests, builder);
 
