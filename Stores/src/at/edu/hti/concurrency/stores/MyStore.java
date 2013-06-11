@@ -1,9 +1,6 @@
 package at.edu.hti.concurrency.stores;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 
 import at.edu.hti.concurrency.Store;
 
